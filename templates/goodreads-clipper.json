@@ -1,73 +1,116 @@
 {
-	"schemaVersion": "0.1.0",
-	"name": "Goodreads",
-	"behavior": "create",
-	"noteNameFormat": "{{selector:.BookPageTitleSection__title h1}}",
-	"path": "References",
-	"noteContentFormat": "{{selector:.BookPageMetadataSection__description}}",
-	"properties": [
-		{
-			"name": "title",
-			"value": "{{schema:name}}",
-			"type": "text"
-		},
-		{
-			"name": "author",
-			"value": "{{schema:author[*].name|wikilink|join}}",
-			"type": "multitext"
-		},
-		{
-			"name": "genre",
-			"value": "{{selector:.BookPageMetadataSection__genres .BookPageMetadataSection__genreButton|wikilink}}",
-			"type": "multitext"
-		},
-		{
-			"name": "length",
-			"value": "{{schema:numberOfPages}}",
-			"type": "number"
-		},
-		{
-			"name": "year",
-			"value": "{{selector:p[data-testid='publicationInfo']|split:\\\"First published \\\"|slice:1|date:\\\"YYYY\\\"}}",
-			"type": "number"
-		},
-		{
-			"name": "scoreGr",
-			"value": "{{schema:aggregateRating.ratingValue}}",
-			"type": "number"
-		},
-		{
-			"name": "rating",
-			"value": "",
-			"type": "number"
-		},
-		{
-			"name": "cover",
-			"value": "{{schema:image}}",
-			"type": "text"
-		},
-		{
-			"name": "isbn",
-			"value": "{{schema:isbn}}",
-			"type": "text"
-		},
-		{
-			"name": "language",
-			"value": "{{schema:inLanguage}}",
-			"type": "text"
-		},
-		{
-			"name": "created",
-			"value": "{{date}}",
-			"type": "date"
-		},
-		{
-			"name": "tags",
-			"value": "books, to-read",
-			"type": "multitext"
-		}
-	],
-	"triggers": [
-		"https://www.goodreads.com/book/"
-	]
+  "schemaVersion": "0.1.0",
+  "name": "Goodreads",
+  "behavior": "create",
+  "noteContentFormat": "![]({{schema:image}})",
+  "properties": [
+    {
+      "name": "title",
+      "value": "{{selector:.BookPageTitleSection__title h1}}",
+      "type": "text"
+    },
+    {
+      "name": "aliases",
+      "value": "{{selector:.BookPageTitleSection__title h1}}, \\\"{{schema:name}} - {{schema:author[*].name|join}}\\\"",
+      "type": "multitext"
+    },
+    {
+      "name": "tags",
+      "value": "resource/book, status/unread",
+      "type": "multitext"
+    },
+    {
+      "name": "description",
+      "value": "{{selector:.BookPageMetadataSection__description}}",
+      "type": "text"
+    },
+    {
+      "name": "areas",
+      "value": "",
+      "type": "multitext"
+    },
+    {
+      "name": "projects",
+      "value": "",
+      "type": "multitext"
+    },
+    {
+      "name": "authors",
+      "value": "{{schema:author[*].name|wikilink|join}}",
+      "type": "multitext"
+    },
+    {
+      "name": "sources",
+      "value": "{{url}}",
+      "type": "multitext"
+    },
+    {
+      "name": "favourite",
+      "value": "false",
+      "type": "checkbox"
+    },
+    {
+      "name": "created",
+      "value": "{{date}}",
+      "type": "datetime"
+    },
+    {
+      "name": "modified",
+      "value": "",
+      "type": "datetime"
+    },
+    {
+      "name": "icon",
+      "value": "",
+      "type": "text"
+    },
+    {
+      "name": "schema",
+      "value": "book",
+      "type": "text"
+    },
+    {
+      "name": "published",
+      "value": "{{selector:p[data-testid='publicationInfo']|split:\\\"First published \\\"|slice:1|date:\\\"YYYY-MM-DD\\\"}}",
+      "type": "date"
+    },
+    {
+      "name": "cover",
+      "value": "{{schema:image}}",
+      "type": "text"
+    },
+    {
+      "name": "genres",
+      "value": "{{selector:.BookPageMetadataSection__genres .BookPageMetadataSection__genreButton|wikilink}}",
+      "type": "multitext"
+    },
+    {
+      "name": "isbn",
+      "value": "{{schema:isbn}}",
+      "type": "multitext"
+    },
+    {
+      "name": "language",
+      "value": "{{schema:inLanguage}}",
+      "type": "text"
+    },
+    {
+      "name": "pages",
+      "value": "{{schema:numberOfPages}}",
+      "type": "number"
+    },
+    {
+      "name": "rating",
+      "value": "",
+      "type": "number"
+    },
+    {
+      "name": "score",
+      "value": "{{schema:aggregateRating.ratingValue}}",
+      "type": "number"
+    }
+  ],
+  "triggers": ["https://www.goodreads.com/book/"],
+  "noteNameFormat": "{{selector:.BookPageTitleSection__title h1}}",
+  "path": "Inbox/Books"
 }
